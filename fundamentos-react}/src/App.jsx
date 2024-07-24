@@ -13,15 +13,14 @@ const UserLastname = () => {
 };
 
 const Marcos = () => {
-    const verdad = true;
-    verdad ? <h2>hola</h2> : <h2>Chau</h2>;
-    // return <h3>No soy gay</h3>;
+    return <h3>No soy gay</h3>;
 };
 
 const App = () => {
     const title = "Este es un titulo desde una constante";
     const textCss = "text-center";
     const pathImg = "https://picsum.photos/200/300";
+
     const user = true;
     const user2 = false;
 
