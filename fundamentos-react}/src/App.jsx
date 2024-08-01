@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import imgPiza from "./assets/images/images.jpg";
 
-const MyButton = (props) => {
+/* nst MyButton = (props) => {
     console.log(props);
     return <button>{props.text}</button>;
+}; */
+const MyButton = ({ text }) => {
+    //console.log(props);
+    return <button>{text}</button>;
 };
 
 const UserName = () => {
@@ -17,8 +21,35 @@ const UserLastname = () => {
 const Marcos = () => {
     return <h3>No soy gay</h3>;
 };
+const ItemFrut = ({ fruit }) => {
+    return <li>{fruit}</li>;
+};
+
+const Todo = (props) => {
+    return (
+        <li>
+            <h3>
+                {props.title} {props.completed ? "✅" : "❎"}
+            </h3>
+        </li>
+    );
+};
 
 const App = () => {
+    const [todos, setTodos] = useState([]);
+
+    const getTodos = async () => {
+        fetch("https://jsonplaceholder.typicode.com/todos/")
+            .then((response) => response.json())
+            .then((json) => {
+                setTodos(json);
+            });
+    };
+
+    useEffect(() => {
+        getTodos();
+    }, []);
+
     const title = "Este es un titulo desde una constante";
     const textCss = "text-center";
     const pathImg = "./src/assets/images/images.jpg";
@@ -27,6 +58,7 @@ const App = () => {
     const fruts = ["🥝", "🍓", "🍌", "🍅"];
     const numeros = [10, 20, 30, 40];
 
+    // console.log(todos);
     return (
         <React.Fragment>
             <h1 className={textCss}>Hola soy React</h1>
@@ -58,6 +90,20 @@ const App = () => {
             <ul>
                 {numeros.map((numero, index) => (
                     <li key={index}>{numero * 1.2}</li>
+                ))}
+            </ul>
+            <ul>
+                {fruts.map((fruit, index) => (
+                    <ItemFrut fruit={fruit} key={index} />
+                ))}
+            </ul>
+            <ul>
+                {todos.map((todo) => (
+                    <Todo
+                        title={todo.title}
+                        completed={todo.completed}
+                        key={todo.id}
+                    />
                 ))}
             </ul>
         </React.Fragment>
