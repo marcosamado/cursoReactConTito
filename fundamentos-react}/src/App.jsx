@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from "react";
 import imgPiza from "./assets/images/images.jpg";
+import MyButton from "./Components/MyButton";
+import WelcomeText from "./Components/WelcomeText";
+import MapFrut from "./Components/MapFrut.jsx";
 
 /* nst MyButton = (props) => {
     console.log(props);
     return <button>{props.text}</button>;
 }; */
-const MyButton = ({ text }) => {
-    //console.log(props);
-    return <button>{text}</button>;
-};
+
+// const WelcomeText = ({ user }) => {
+//     if (user) {
+//         return (
+//             <div>
+//                 <h3>Online</h3>
+//             </div>
+//         );
+//     }
+//     return <div>Offline</div>;
+// };
 
 const UserName = () => {
     return <h3>Soy marcos y soy el mas gay</h3>;
@@ -20,9 +30,6 @@ const UserLastname = () => {
 
 const Marcos = () => {
     return <h3>No soy gay</h3>;
-};
-const ItemFrut = ({ fruit }) => {
-    return <li>{fruit}</li>;
 };
 
 const Todo = (props) => {
@@ -68,6 +75,7 @@ const App = () => {
             <MyButton text="boton 2" />
             <MyButton text="boton 3" />
             {user ? <UserName /> : <UserLastname />}
+            <WelcomeText user={user} />
             {user2 && <Marcos />}
             <ul>
                 <li>{fruts[0]}</li>
@@ -80,21 +88,12 @@ const App = () => {
                     <li key={index}>{fruit}</li>
                 ))}
             </ul>
-            <ul>
-                {fruts.map((fruit, index) => (
-                    <li key={index}>
-                        {fruit} - {index}
-                    </li>
-                ))}
-            </ul>
+
+            <MapFrut fruts={fruts} />
+
             <ul>
                 {numeros.map((numero, index) => (
                     <li key={index}>{numero * 1.2}</li>
-                ))}
-            </ul>
-            <ul>
-                {fruts.map((fruit, index) => (
-                    <ItemFrut fruit={fruit} key={index} />
                 ))}
             </ul>
             <ul>
