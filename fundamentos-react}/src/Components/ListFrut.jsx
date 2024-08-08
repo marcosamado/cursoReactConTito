@@ -1,6 +1,6 @@
 import ItemFrut from "./ItemFrut";
 
-const MapFrut = ({ fruts }) => {
+const ListFrut = ({ fruts }) => {
     return (
         <ul>
             {fruts.map((fruit, index) => (
@@ -10,4 +10,4 @@ const MapFrut = ({ fruts }) => {
     );
 };
 
-export default MapFrut;
+export default ListFrut;

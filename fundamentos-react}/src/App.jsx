@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import imgPiza from "./assets/images/images.jpg";
 import MyButton from "./Components/MyButton";
 import WelcomeText from "./Components/WelcomeText";
-import MapFrut from "./Components/MapFrut.jsx";
+import ListFrut from "./Components/ListFrut.jsx";
+import ButtonState from "./Components/ButtonState.jsx";
 
 /* nst MyButton = (props) => {
     console.log(props);
@@ -63,6 +64,7 @@ const App = () => {
     const user = true;
     const user2 = false;
     const fruts = ["🥝", "🍓", "🍌", "🍅"];
+    const fruts2 = ["🍊", "🍐", "🥭", "🫐", "🍑"];
     const numeros = [10, 20, 30, 40];
 
     // console.log(todos);
@@ -70,32 +72,43 @@ const App = () => {
         <React.Fragment>
             <h1 className={textCss}>Hola soy React</h1>
             <h2>{title.toUpperCase()}</h2>
+
             <img src={imgPiza} alt="aca va una foto de una pizza" />
             <MyButton text="boton 1" />
             <MyButton text="boton 2" />
             <MyButton text="boton 3" />
+
+            <ButtonState />
+
             {user ? <UserName /> : <UserLastname />}
+
             <WelcomeText user={user} />
+
             {user2 && <Marcos />}
+
             <ul>
                 <li>{fruts[0]}</li>
                 <li>{fruts[1]}</li>
                 <li>{fruts[2]}</li>
                 <li>{fruts[3]}</li>
             </ul>
+
             <ul>
                 {fruts.map((fruit, index) => (
                     <li key={index}>{fruit}</li>
                 ))}
             </ul>
 
-            <MapFrut fruts={fruts} />
+            <ListFrut fruts={fruts} />
+
+            <ListFrut fruts={fruts2} />
 
             <ul>
                 {numeros.map((numero, index) => (
                     <li key={index}>{numero * 1.2}</li>
                 ))}
             </ul>
+
             <ul>
                 {todos.map((todo) => (
                     <Todo
