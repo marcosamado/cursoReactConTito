@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 const NoControlado = () => {
-    // const form = document.querySelector("#form");  modificando el dom real
+    const [errorForm, setErrorForm] = useState(false);
 
+    // const form = document.querySelector("#form");  modificando el dom real
     const form = useRef(null); //modificando el dom virtual atraves de react y cada vez que necesitoms hacer una referencia al dom, usamos useRef
 
     const handleSubmit = (e) => {
@@ -11,8 +12,19 @@ const NoControlado = () => {
         const data = new FormData(form.current);
         //console.log(...data.entries());
 
-        const dataObject = Object.fromEntries([...data.entries()]);
-        console.log(dataObject);
+        const { title, description, state } = Object.fromEntries([
+            ...data.entries(),
+        ]);
+
+        //validar los datos
+        if (!title.trim() || !description.trim()) {
+            setErrorForm(true);
+        } else {
+            setErrorForm(false);
+            console.log("La tarea se creo correctamente");
+        }
+
+        //enviar los datos
     };
 
     // document.addEventListener("submit", (evento) => {
@@ -39,6 +51,7 @@ const NoControlado = () => {
             <button type="submit" className="btn btn-primary">
                 Procesar
             </button>
+            {errorForm && <p>Debe rellenar los campos</p>}
         </form>
     );
 };
