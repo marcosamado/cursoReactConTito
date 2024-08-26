@@ -14,6 +14,14 @@ const Controlado = () => {
     // document.addEventListener("submit", (evento) => {
     //     evento.preventDefault();
     // });
+    const handleChange = (e) => {
+        // const { name, value } = e.target;
+        // setTodo({ ...todo, [name]: value });
+
+        setTodo({ ...todo, [e.target.name]: e.target.value });
+    };
+
+    // console.log(todo.title);
 
     return (
         <form onSubmit={handleSubmit}>
@@ -24,7 +32,7 @@ const Controlado = () => {
                 name="title"
                 value={todo.title}
                 onChange={(e) => {
-                    setTodo({ ...todo, title: e.target.value });
+                    handleChange(e);
                 }}
             />
             <textarea
@@ -33,7 +41,7 @@ const Controlado = () => {
                 name="description"
                 value={todo.description}
                 onChange={(e) => {
-                    setTodo({ ...todo, description: e.target.value });
+                    handleChange(e);
                 }}
             />
             <select
@@ -41,7 +49,7 @@ const Controlado = () => {
                 name="state"
                 value={todo.state}
                 onChange={(e) => {
-                    setTodo({ ...todo, state: e.target.value });
+                    handleChange(e);
                 }}
             >
                 <option value="pendiente">Pendiente</option>
